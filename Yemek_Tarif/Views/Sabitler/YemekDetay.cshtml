@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Yemek_Tarif.Models.tbl_Yemekler>
+    @using Yemek_Tarif.Helper
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "YemekDetay";
+    Layout = "~/Views/shared/_layout.cshtml";
+}
+<head>
+    <link href="~/script/css/resp.css" rel="stylesheet" />
+    <link href="~/script/csss/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/script/css/main.css" rel="stylesheet">
+
+</head>
+<section class="page-title" style="background-image:url(/images/background/10.jpg)">
+    <div class="auto-container">
+        <h1>Tarifler</h1>
+    </div>
+</section>
+
+@foreach (var item in Model)
+{
+    @*<div style="width: 100%;">
+            <div style="float: left; width: 30%; background-color: Red;">sol div </div>
+            <div style="float: left; width: 40%; background-color: Blue;">orta div </div>
+            <div style="float: right; width: 30%; background-color: Silver;">sağ div </div>
+        </div>*@
+    <!-- Recipes Block -->
+
+
+
+
+
+
+
+    @*<font size="3" color="#bf0000"><i>@item.YemekMalzeme</i></font>*@
+
+
+
+
+
+
+    <div class="recipes-block col-lg-7 col-md-6 col-sm-12" style="margin-left:auto;margin-right:auto; ">
+        <div class="inner-box">
+            @*<div class="image">
+
+
+                    <a href="/@item.YemekResim">
+                    <img src=" ~/images/@item.YemekResim"   />
+                    </a>
+                </div>*@
+            <font color="black"><h3 align="center">@item.YemekAd</h3></font>
+            <br />
+            <div class="add-recipe-col" style="width:auto;">
+                <h4>Malzemeler</h4>
+                <div class="inner-box">
+
+
+                    <div><font size="3" color="#bf0000"><i>@Html.Raw(item.YemekIcerik.Replace(Environment.NewLine, "<li/>"))</i></font></div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="lower-content" >
+
+                @*<div class="author-image"><a href="author-details.html"><img src="/images/resource/author-3.jpg" alt=""></a></div>*@
+
+                @*<div class="category">CHICKEN</div>*@
+                <h3><b>Yapılışı</b></h3>
+
+
+                <div class="text">@Html.Raw(item.YemekTarif.Replace(Environment.NewLine, "<li/>"))</div>
+
+
+                @*@itemm.YemekTarif*@
+
+
+                <br />
+                <br />
+
+                @*<ul class="post-meta">
+
+                        <li><span class="icon flaticon-dish"></span>@item.YemekMalzeme Tane Malzeme</li>
+                        @*<li><span class="icon flaticon-clock-3"></span>6 Min</li>
+                    <li><span class="icon flaticon-business-and-finance"></span>4 People</li>*@
+
+
+                @*</ul>*@
+            </div>
+        </div>
+
+    </div>
+}
+
+<br />
+
+<style>
+
+
+    ol.roman18 {
+        margin: 1em 0;
+        counter-reset: item 17; /* The first list item will start at 18, XVIII */
+    }
+
+        ol.roman18 li {
+            margin: 0 0 0 4em;
+        }
+
+            ol.roman18 li:before {
+                content: counter(item, upper-roman) '.';
+                counter-increment: item;
+                /* Alignment */
+                position: absolute;
+                margin-left: -3.5em;
+                text-align: right;
+                width: 3em;
+            }
+</style>
+
+
+

@@ -1,0 +1,142 @@
+﻿@model Yemek_Tarif.Models.tbl_Yemekler
+@{
+    /**/
+
+    ViewBag.Title = "YemekGuncelle";
+    Layout = "~/Views/shared/_layout.cshtml";
+}
+
+
+
+<section class="page-title" style="background-image:url(/images/background/10.jpg)">
+    <div class="auto-container">
+        <h1>Recipes</h1>
+    </div>
+</section>
+<section class="add-recipe-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="add-recipe-col">
+                    <h4>Tarif Güncelleme</h4>
+                    <form action="/Sabitler/YemekGuncelle" method="post" enctype="multipart/form-data">
+                        <div class="form-group mb-4">
+                            <label>Yemek Adı</label>
+                            <input type="hidden" name="ID" class="form-control" value="@Model.Yemekid" />
+                            <input type="text" class="form-control" name="YemekAd" value="@Model.YemekAd">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Yemek Tarif</label>
+                            @*<input type="text" class="form-control" name="YemekTarif" value="@Model.YemekTarif" rows="4">*@
+                            @Html.TextAreaFor(m => m.YemekTarif, new { id = "editor", @class = "editor", @cols = 80, @rows = 15 })
+
+
+                            <label> Kategori Seçiniz...</label>
+
+                            @Html.DropDownListFor(m => m.tbl_Kategoriler.Kategoriid, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Malzeme İçeriği</label>
+                            @*<textarea class="form-control bosluk" cols="20" rows="4" value="@Model.YemekMalzeme" id="textarea"  name="YemekMalzeme"></textarea>*@
+                            @Html.TextAreaFor(m => m.YemekIcerik, new { id = "editorr", @class = "editorr", @cols = 80, @rows = 15 })
+
+                           @* @Html.TextAreaFor(m => m.YemekIcerik, new { id = "editor", @class = "editor", @cols = 80, @rows = 15 })*@
+                            @*<input type="text" class="form-control" value="@Model.YemekIcerik" name="YemekIcerik">*@
+
+                        </div>
+                        <div class="form-group mb-4">
+
+                            <label>Bir Resim Ekle</label>
+                            <input type="file" name="YemekResim" class="form-control-file">
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-checkbox">
+                                @*@Html.LabelFor(Model=>Model.YemekDurum,htmlAttributes:new { @class="control-label col-md-2"})*@<label>YEMEK ONAY</label>
+                                @* @Html.TextAreaFor(model => model.YemekMalzeme, new { @class = "form-control", @cols = 20, @rows =30 })*@
+                                @Html.EditorFor(Model => Model.YemekDurum)
+
+                                @Html.ValidationMessageFor(Model => Model.YemekDurum, "", new { @class = "text-danger" })
+                                @*<input type="text" class="form-control" value="@Model.YemekMalzeme" name="YemekMalzeme">*@
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Malzeme Miktarı</label>
+                            @* @Html.TextAreaFor(model => model.YemekMalzeme, new { @class = "form-control", @cols = 20, @rows =30 })*@
+
+                            <input type="text" class="form-control" value="@Model.YemekMalzeme" name="YemekMalzeme">
+                        </div>
+
+                        <div class="row">
+
+
+                        </div>
+                        <button class="btn btn-primary theme-btn btn-style-one" type="submit"><span>Tarifi Güncelle</span></button>
+                    </form>
+                    @if (ViewBag.sonuc == 1)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            Tebrikler Bir Kayıt Eklediniz.!
+                        </div>
+                    }
+                    else if (ViewBag.sonuc == 0)
+                    {
+
+                        <div class="alert alert-secondary" role="alert">
+                            Bir Sorun Var.!
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<head>
+    <link href="~/ckeditor5-build-classic-35.0.1/ckeditor5-build-classic/sample/css/sample.css" rel="stylesheet" />
+    <script src="~/ckeditor5-build-classic-35.0.1/ckeditor5-build-classic/ckeditor.js"></script>
+    <script src="ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editorr'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+</head>
+<style>
+
+    .bosluk {
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        /*word-wrap: break-word;
+        word-break: break-all;
+        height: 80px;*/
+    }
+
+    .scroll {
+        border: thin dotted #C0C0C0;
+        overflow-y: scroll;
+        width: 18%;
+        height: 450px;
+    }
+</style>

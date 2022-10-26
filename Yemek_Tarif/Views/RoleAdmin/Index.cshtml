@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    @*<link href="~/script/css/resp.css" rel="stylesheet" />
+    <link href="~/script/csss/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/script/css/bootstrap.css" rel="stylesheet">
+    <link href="~/script/css/main.css" rel="stylesheet">
+    <link href="~/script/css/responsive.css" rel="stylesheet">
+    <link href="~/script/css/Sayfalama.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+    <meta name="google-site-verification" content="RYs46XiQ7ju9R4gqHI0HCXuKIAoQfzhwFjkKy3bTN-E" />
+     Responsive 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">*@
+
+</head>
+<br />
+<br />
+<br />
+<br />
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+
+        Roller
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th> </th>
+        </tr>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3"> ROL YOK</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.Id</td>
+                    <td>@role.Name</td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "RoleAdmin", new { id = role.Id }))
+                        {
+                            @Html.ActionLink("Güncelle", "Edit", new { id = role.Id }, new { @class = "btn btn-primary btn-sm" })
+
+                            <button type="submit" class="btn btn-danger btn-sm">SİL</button>
+                        }
+                                    </td>
+                </tr>
+            }
+
+        }
+    </table>
+
+</div>
+
+<script src="~/script/js/jquery.js"></script>
+
+<script src="~/script/jss/bootstrap.bundle.js"></script>
+<script src="~/script/jss/bootstrap.js"></script>
+<script src="~/script/js/jquery.js"></script>
+<script src="~/script/js/popper.min.js"></script>
+<script src="~/script/js/bootstrap.min.js"></script>
+<script src="~/script/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="~/script/js/jquery.fancybox.js"></script>
+<script src="~/script/js/appear.js"></script>
+<script src="~/script/js/owl.js"></script>
+<script src="~/script/js/wow.js"></script>
+<script src="~/script/js/jquery-ui.js"></script>
+<script src="~/script/js/jquery.simpleLoadMore.min.js"></script>
+<script src="~/script/js/script.js"></script>

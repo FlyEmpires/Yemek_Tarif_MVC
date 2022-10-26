@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    @*<link href="~/script/css/resp.css" rel="stylesheet" />
+        <link href="~/script/csss/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/script/css/bootstrap.css" rel="stylesheet">
+        <link href="~/script/css/main.css" rel="stylesheet">
+        <link href="~/script/css/responsive.css" rel="stylesheet">
+        <link href="~/script/css/Sayfalama.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+        <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+        <meta name="google-site-verification" content="RYs46XiQ7ju9R4gqHI0HCXuKIAoQfzhwFjkKy3bTN-E" />
+         Responsive
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">*@
+
+</head>
+<h2>Create Role</h2>
+
+<hr />
+
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>İsim</label>
+        <input name="name" value="@Model" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Oluştur</button>
+}
+
+

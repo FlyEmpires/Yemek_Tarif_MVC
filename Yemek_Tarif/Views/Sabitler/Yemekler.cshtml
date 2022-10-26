@@ -1,0 +1,175 @@
+﻿@*@model PagedList.IPagedList<Yemek_Tarif.Models.tbl_Yemekler>*@
+
+@*@using PagedListExample.Models*@
+
+@*KULLANILAN*@
+
+@model PagedList.IPagedList<Yemek_Tarif.Models.tbl_Yemekler>
+
+@*KULLANILAN*@
+@using Yemek_Tarif.Helper
+@using PagedList
+@using PagedList.Mvc
+
+@*@model IEnumerable<Yemek_Tarif.Models.tbl_Yemekler>*@
+
+@*@model List <Yemek_Tarif.Models.tbl_Yemekler>*@
+@{
+    /**/
+
+    ViewBag.Title = "Yemekler";
+    Layout = "~/Views/shared/_layout.cshtml";
+}
+
+
+<section class="page-title" style="background-image:url(/images/background/10.jpg)">
+    <div class="auto-container">
+        <h1>Tarifler</h1>
+    </div>
+</section>
+<section class="popular-recipes-section style-three">
+    <div class="auto-container">
+        <!-- Sec Title -->
+        <div class="sec-title">
+            <div class="clearfix">
+                <div class="pull-left">
+                    <h2>Yemek Tarifleri</h2>
+                    <div class="text">Birbirinden Lezzetli Çeşit Çeşit Bulabileceğiniz Tarifler</div>
+
+                </div>
+                @*<div class="pull-right">
+                        <a href="recipes.html" class="theme-btn btn-style-one"><span class="txt">See all Post</span></a>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="outer-container">
+        <div class="row clearfix">
+            @foreach (var item in Model.Where(x => x.YemekDurum == true))
+            {
+                <!-- Recipes Block -->
+
+
+
+                <div class="entertaining-block col-lg-3 col-md-7 col-sm-12 ">
+                    <div class="inner-box ">
+                        <div class="image saydamlik" align="center">
+
+
+                            @*<a href="/@item.YemekResim">*@
+                            @*<a href="/Sabitler/@SeoHelper.ToSeoUrl(item.YemekAd).ToLower()-@item.Yemekid"><img src="@item.YemekResim" style="max-width:300px;height:200px;max-height:300px" /></a>*@
+
+                            <a href="Yemekler/@SeoHelper.ToSeoUrl(item.YemekAd).ToLower()-@item.Yemekid"><img src="@item.YemekResim" style="max-width:300px;height:200px;max-height:300px" /></a>
+                            @*</a>*@
+                        </div>
+
+                        <div class="lower-content" align="center">
+
+                            @*<div class="author-image"><a href="author-details.html"><img src="/images/resource/author-3.jpg" alt=""></a></div>*@
+
+                            <div class="category" style="color:#ff6a00">@item.tbl_Kategoriler.KategoriAd</div>
+
+                            <a href="Yemekler/@SeoHelper.ToSeoUrl(item.YemekAd).ToLower()-@item.Yemekid"><h3 style="color:#000000">@item.YemekAd</h3></a>
+                            <a href="Yemekler/@SeoHelper.ToSeoUrl(item.YemekAd).ToLower()-@item.Yemekid" class="theme-btn read-more">Tarife Git</a>
+
+
+                            @*<a href="/Sabitler/YemekDetay/@item.Yemekid"><h3>@item.YemekAd</h3></a>*@
+
+                            @*<a href="/Sabitler/YemekDetay/@item.Yemekid" class="theme-btn read-more">Tarife Git</a>*@
+
+                            @* DEVAMINI OKU *@
+                            @*@if (item.YemekTarif.Length >= 150)
+        {
+            <div style="list-style:none; ">
+                @Html.Raw(@item.YemekTarif.Substring(0, item.YemekTarif.Substring(0, 115).LastIndexOf("")))
+
+
+            </div>
+            <a href="Yemekler/@SeoHelper.ToSeoUrl(item.YemekAd).ToLower()-@item.Yemekid" class="theme-btn read-more">Devamını Oku</a>
+        }
+
+        else
+        {
+            @item.YemekTarif
+        }*@
+
+
+
+                            <div class="text">
+                                @* @item.YemekTarif.Substring(0, item.YemekTarif.Substring(0, 150).LastIndexOf(""))*@
+
+
+
+
+                            </div>
+
+                            <ul class="post-meta">
+
+
+
+                                @*<li>
+                <span class="icon flaticon-dish"></span>@item.YemekTarif.Substring(0, 100)
+
+            </li>*@
+                                <li><span class="icon flaticon-dish"></span>@item.YemekMalzeme tane malzeme</li>
+                                @*<li><span class="icon flaticon-clock-3"></span>6 Min</li>
+            <li><span class="icon flaticon-business-and-finance"></span>4 People</li>*@
+
+
+                            </ul>
+                            @*<table>
+            <tbody>
+                <tr>
+                    <td><a href="/Sabitler/Silme/@item.Yemekid" class="button-box">SİL</a></td>
+                </tr>
+            </tbody>
+        </table>*@
+                            <br /> <br /> <br />
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+            }
+
+
+
+
+
+
+            @*@Html.PagedListPager(Model, _sayfaNo => Url.Action("Yemekler", "Sabitler", new { SayfaNo = _sayfaNo }), new PagedListRenderOptions
+                {
+                    LiElementClasses = new string[] { "pagination pagination-lg" }
+
+                })*@
+
+
+
+
+
+
+            @*---------------SAYFALAMA-------------*@
+            @Html.PagedListPager(Model, _sayfaNo => Url.Action("Yemekler", "Sabitler", new { SayfaNo = _sayfaNo }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< İlk", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })
+
+
+        </div>
+    </div>
+
+</section>
+<style>
+    ul, li {
+        list-style-image: none;
+        list-style-type: none;
+        list-style: none;
+        line-height: 20px;
+        padding: 0px;
+        margin: 0px;
+        margin-left: 0px;
+    }
+
+    .centered {
+        text-align: left;
+    }
+</style>

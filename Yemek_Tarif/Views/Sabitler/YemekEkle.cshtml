@@ -1,0 +1,143 @@
+﻿@*@model IEnumerable<Yemek_Tarif.Models.tbl_Kategoriler>*@
+
+@model Yemek_Tarif.Models.tbl_Yemekler
+@*@model Kategori*@
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "YemekEkle";
+    Layout = "~/Views/shared/_layout.cshtml";
+
+
+}
+
+<head>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+    </svg>
+</head>
+
+<section class="page-title" style="background-image:url(/images/background/10.jpg)">
+    <div class="auto-container">
+
+        <h1>Tarif Ekleyin</h1>
+    </div>
+</section>
+<section class="add-recipe-area">
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-lg-12">
+
+                <div class="add-recipe-col">
+                    <h4>Yemek tarifi göndermek için lütfen bütün alanları doldurun</h4>
+
+                    <form action="/Sabitler/YemekEkle" method="post" enctype="multipart/form-data">
+                        <div class="form-group mb-4">
+                            <label>Yemek Adı</label>
+                            @*<input type="text" name="KullanıcıID" class="form-control" value="@Model.s" />*@
+
+                            <input type="text" class="form-control" name="YemekAd" placeholder="Örnek: Kremalı Patates" required="">
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Yemek Tarif</label>
+                            <textarea class="form-control" name="YemekTarif" id="exampleFormControlTextarea1" rows="4" placeholder="Buraya yazınız..." required=""></textarea>
+                        </div>
+                        <label> Kategori Seçiniz...</label>
+                        <div class="form-group mb-4">
+                            @Html.DropDownListFor(m => m.tbl_Kategoriler.Kategoriid, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group mb-4">
+                            <label hidden>Yemek Adı</label>
+                            <input type="hidden" class="form-control" value="false" name="YemekDurum">
+
+                            @*<input type="hidden" class="form-control" name="KullanıcıAdı" value="@Session["username"]" />*@
+                            <input type="hidden" class="form-control" name="KullanıcıAdı" value="@User.Identity.Name" />
+
+
+
+
+                        </div>
+                        <div class="form-group mb-4">
+                            <label>Malzeme İçeriği</label>
+                            <textarea class="form-control" name="YemekIcerik"></textarea>    @*<input type="text" class="form-control" name="YemekMalzeme">*@
+                        </div>
+
+                        <div class="form-group mb-4">
+
+            <label>Bir Resim Ekle</label>
+            <input type="file" name="YemekResim" class="form-control-file">
+        </div>
+
+
+
+
+                        @*<div class="form-group mb-4">
+            <label>Etiketler</label>
+            <input type="text" class="form-control" placeholder="Example: Pizza, Burger, Fried Rice">
+        </div>*@
+                        <div class="form-group mb-4">
+                            <label>Malzeme Miktarı</label>
+                            <input type="text" class="form-control" name="YemekMalzeme">
+                        </div>
+                        @*<div class="form-group mb-4">
+            <label>Video Link</label>
+            <input type="text" class="form-control" placeholder="For example: https://www.youtube.com/embed/sv3TXMSv6Lw">
+        </div>*@
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group mb-4">
+                                    @*<label>Add Directions</label>*@
+                                    <div class="loadmore load-more">
+                                        @*<textarea class="form-control load-item load-more__item" id="exampleFormControlTextarea1" rows="3" placeholder="Buraya yazınız..."></textarea>*@
+                                        @*<textarea class="form-control load-item load-more__item" id="exampleFormControlTextarea1" rows="3" placeholder="Write Here..." style="display: none;"></textarea>*@
+
+                                        @*<a href="#" class="load-more__btn">Add Field</a>*@
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        </symbol>
+                        <button class="btn btn-primary theme-btn btn-style-one" type="submit"><span>Tarif Gönder</span></button><br /> <br />  <div class="alert alert-primary d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill" /></svg>
+                            <div>
+                                Ekleyeceğiniz tarif yönetici onayından sonra yayımlanacaktır.
+                            </div>
+                        </div>
+                        @if (ViewBag.sonuc == 1)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                Tebrikler Bir Kayıt Eklediniz.!
+                            </div>
+                        }
+                        else if (ViewBag.sonuc == 0)
+                        {
+
+                            <div class="alert alert-secondary" role="alert">
+                                Bir Sorun Var.!
+                            </div>
+                        }
+
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
